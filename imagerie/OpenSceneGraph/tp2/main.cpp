@@ -13,13 +13,35 @@
 #include <osgViewer/ViewerEventHandlers>
 #include <osg/Switch>
 #include <osg/Camera>
+#include <osg/Fog>
+#include <osgParticle/PrecipitationEffect>
+#include <osgShadow/ShadowedScene>
+#include <osgShadow/ShadowMap>
+#include <osgShadow/SoftShadowMap>
+#include <osgGA/DriveManipulator>
+#include <osgText/Text>
+#include <osg/NodeCallback>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 osg::ref_ptr<osgViewer::Viewer> viewer;
 osg::ref_ptr<osg::LOD> vache_lod;
-osg::ref_ptr<osg::Camera> cam1;
-osg::ref_ptr<osg::Camera> cam2;
-osg::ref_ptr<osg::Camera> cam3;
+osg::ref_ptr<osgText::Text> vitesse_txt = new  osgText::Text;
+osg::ref_ptr<osgGA::DriveManipulator> camera;
+
+class CallbackVitesse : public osg::NodeCallback{
+public:
+	virtual void operator() (osg::Node* n, osg::NodeVisitor* nv)
+	{
+
+		double d = camera->getVelocity();
+		std::ostringstream o;
+		o << d;
+		std::string s = o.str();
+		vitesse_txt->setText(s);
+	}
+};
 
 class GestionEvenements : public osgGA::GUIEventHandler 
 {
@@ -48,17 +70,6 @@ bool GestionEvenements::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActi
 						switchNode->setAllChildrenOff();
 					else
 						switchNode->setAllChildrenOn();
-				break;
-				case '1':
-					//viewer->setCamera(cam1);
-					std::cout<<"lol"<<std::endl;
-				break;
-				case '2':
-					//viewer->setCamera(cam2);
-					std::cout<<"lol"<<std::endl;
-				break;
-				case '3':
-					//viewer->setCamera(cam3);
 				break;
 			}
 		break;
@@ -105,67 +116,118 @@ osg::ref_ptr<osg::Group> creation_troupeau(int nb_vaches, float taillex, float t
 	return troupeau;
 }
 
+osg::ref_ptr<osg::Node> creationHUD(){
+	// On crée une caméra qui correspond à un écran de 1280x1024
+	osg::Camera* camera = new osg::Camera;
+	camera->setProjectionMatrix(osg::Matrix::ortho2D(0, 1366, 0, 750));  
+	camera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+	camera->setViewMatrix(osg::Matrix::identity());
+	camera->setClearMask(GL_DEPTH_BUFFER_BIT);
 
+	// Le sous-graphe de la caméra sera affiché après celui de la caméra principale,
+	// donc par dessus le reste de la scène.
+	camera->setRenderOrder(osg::Camera::POST_RENDER);
+
+	// Les éléments graphiques du HUD (ici un simple texte) constitueront un sous-graphe
+	// de la caméra que l'on vient de créer
+	vitesse_txt->setColor(osg::Vec4f(osg::Vec3(0, 0, 0), 1));
+	vitesse_txt->setPosition(osg::Vec3(50.0f, 50.0f, 0.0f));
+	vitesse_txt->setText("0");
+	vitesse_txt->setCharacterSize(20);
+	vitesse_txt->setFont("arial.ttf");
+
+	osg::Geode* geode = new osg::Geode();
+	geode->getOrCreateStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+	geode->addDrawable(vitesse_txt);
+
+	camera->addChild(geode);
+	return camera;
+}
 
 
 int main(void)
-{	
-	
-	//cameras
-		cam1 = new osg::Camera;
-		cam1->setClearColor(osg::Vec4(0, 0.7, 1, 1)); 
-		// Volume de vue : 60° de Field Of View, un rapport de 4/3, un plan near à 0.1 et far à 100
-		cam1->setProjectionMatrixAsPerspective(30, 4.0 / 3.0, 0.1, 100);
-		
-		// Fixe la position et l'orientation du viewer
-		cam1->setViewMatrixAsLookAt(	// Identique à gluLookAt() d'OpenGL
-			osg::Vec3(0, -100000, 100000), 	// position de la caméra
-			osg::Vec3(0, 0, 0),    	// point visé par la caméra
-			osg::Vec3(0, 0, 1));   // vecteur perpendiculaire à la caméra
-			
-		cam2 = new osg::Camera;
-		cam2->setClearColor(osg::Vec4(0, 0.7, 1, 1)); 
-		// Volume de vue : 60° de Field Of View, un rapport de 4/3, un plan near à 0.1 et far à 100
-		cam2->setProjectionMatrixAsPerspective(30, 4.0 / 3.0, 0.1, 100);
-		
-		// Fixe la position et l'orientation du viewer
-		cam2->setViewMatrixAsLookAt(	// Identique à gluLookAt() d'OpenGL
-			osg::Vec3(0, 100000, 100000), 	// position de la caméra
-			osg::Vec3(0, 0, 0),    	// point visé par la caméra
-			osg::Vec3(0, 0, 1));   // vecteur perpendiculaire à la caméra
-			
-		cam3 = new osg::Camera;
-		cam3->setClearColor(osg::Vec4(0, 0.7, 1, 1)); 
-		// Volume de vue : 60° de Field Of View, un rapport de 4/3, un plan near à 0.1 et far à 100
-		cam3->setProjectionMatrixAsPerspective(30, 4.0 / 3.0, 0.1, 100);
-		
-		// Fixe la position et l'orientation du viewer
-		cam3->setViewMatrixAsLookAt(	// Identique à gluLookAt() d'OpenGL
-			osg::Vec3(0, 100000, -100000), 	// position de la caméra
-			osg::Vec3(0, 0, 0),    	// point visé par la caméra
-			osg::Vec3(0, 0, 1));   // vecteur perpendiculaire à la caméra
-	
-	//............
-	
+{		
 	viewer = new osgViewer::Viewer;
 	osg::DisplaySettings::instance()->setNumMultiSamples(4);
 	viewer->setUpViewInWindow( 100, 50, 800, 600 );
+
+	camera = new osgGA::DriveManipulator();
+	viewer->setCameraManipulator(camera.get());
 	viewer->getCamera()->setClearColor( osg::Vec4( 0,0.7,1,1 ) );
+
 	osgViewer::Viewer::Windows fenetres;
 	viewer->getWindows(fenetres);
 	fenetres[0]->setWindowName("Vaches");
 	viewer->addEventHandler(new osgViewer::StatsHandler);
-	viewer->setCamera(cam1);
-	
-
 	
 	osg::ref_ptr<osg::Group> scene = new osg::Group;
 	osg::ref_ptr<osg::Switch> switchNode = new osg::Switch;
+
+	switchNode->setUpdateCallback(new CallbackVitesse);
+
+	osg::ref_ptr<osgShadow::ShadowedScene> shadowScene = new osgShadow::ShadowedScene;
+	osg::ref_ptr<osgShadow::SoftShadowMap> sm = new osgShadow::SoftShadowMap;
+
+	//changer de lumiere
+
+	osg::ref_ptr<osg::LightSource> lumiere = new osg::LightSource;
+
+	lumiere->getLight()->setLightNum(1);// GL_LIGHT1
+	lumiere->getLight()->setPosition(osg::Vec4(1,-1, 1, 0));// 0 = directionnel
+
+	lumiere->getLight()->setAmbient(osg::Vec4(0.2, 0.2, 0.2, 1.0));
+	lumiere->getLight()->setDiffuse(osg::Vec4(0.4, 0.4, 0.4, 1.0));
+	lumiere->getLight()->setSpecular(osg::Vec4(1.0, 1.0, 1.0, 1.0));
+
+	scene->addChild(lumiere.get());
+
+	scene->getOrCreateStateSet()->setMode(GL_LIGHT0, osg::StateAttribute::OFF);
+	scene->getOrCreateStateSet()->setMode(GL_LIGHT1, osg::StateAttribute::ON);
+
+	//.............
+
+	//shadows
+
+	sm->setSoftnessWidth(0.003);
+
+	shadowScene->setShadowTechnique(sm.get());
+	shadowScene->addChild(lumiere.get());
+	scene->addChild(shadowScene.get());
+
+	viewer->setSceneData(scene);
+
+	//.............
+
+	//fog
+
+	osg::ref_ptr<osg::Fog> fog = new osg::Fog;
+
+	fog->setMode(osg::Fog::LINEAR);
+	fog->setColor(osg::Vec4(0,0.7,1, 1));
+	fog->setStart(8000);
+	fog->setEnd(30000);
+
+	scene->getOrCreateStateSet()->setAttribute(fog, osg::StateAttribute::ON);
+	scene->getOrCreateStateSet()->setMode(GL_FOG, osg::StateAttribute::ON);
+
+	//..............
 	
+
+	//pluie
+
+	osg::ref_ptr<osgParticle::PrecipitationEffect>  precipNode = new osgParticle::PrecipitationEffect;
+
+	precipNode->setWind(osg::Vec3(10,0,0));
+	precipNode->setParticleSpeed(0.4);
+	precipNode->snow(1); 
+	// ou « snow » pour de la neige
+	//scene->addChild(precipNode.get());
+
+	//..............
 	osg::ref_ptr<GestionEvenements> gestionnaire = new GestionEvenements(scene, switchNode);
 	viewer->addEventHandler(gestionnaire.get());
 	
-	scene->addChild(creation_sol(9000.0, 9000.0).get());
+	shadowScene->addChild(creation_sol(9000.0, 9000.0).get());
 	
 	vache_lod = new osg::LOD;
 	vache_lod->setRangeMode( osg::LOD::DISTANCE_FROM_EYE_POINT );	
@@ -180,9 +242,8 @@ int main(void)
 	osg::ref_ptr<osg::Group> troupeau = creation_troupeau(50, 7000.0, 7000.0);
 	
 	switchNode->addChild(troupeau.get());	
-	scene->addChild(switchNode.get());
-	
-	viewer->setSceneData(scene.get());
+	shadowScene->addChild(switchNode.get());
+	scene->addChild(creationHUD().get());
 	
 	return viewer->run();
 }

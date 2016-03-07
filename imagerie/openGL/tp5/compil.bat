@@ -1,1 +1,0 @@
-g++ main.cpp objet3d.cpp -o main.exe -lglut32 -lglu32 -lopengl32 -L.

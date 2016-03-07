@@ -6,9 +6,39 @@
 #include <osg/LightSource>
 #include <osgGA/GUIEventHandler>
 #include <osg/NodeCallback>
+#include <osgText/Text>
 
 float deplacementz = 0;
 float deplacementx = 0;
+
+osg::ref_ptr<osg::Node> creationHUD(){
+	// On crée une caméra qui correspond à un écran de 1280x1024
+	osg::Camera* camera = new osg::Camera;
+	camera->setProjectionMatrix(osg::Matrix::ortho2D(0, 1366, 0, 750));  
+	camera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+	camera->setViewMatrix(osg::Matrix::identity());
+	camera->setClearMask(GL_DEPTH_BUFFER_BIT);
+
+	// Le sous-graphe de la caméra sera affiché après celui de la caméra principale,
+	// donc par dessus le reste de la scène.
+	camera->setRenderOrder(osg::Camera::POST_RENDER);
+
+	// Les éléments graphiques du HUD (ici un simple texte) constitueront un sous-graphe
+	// de la caméra que l'on vient de créer
+	osg::ref_ptr<osgText::Text> text = new  osgText::Text;
+	text->setColor(osg::Vec4f(osg::Vec3(0, 0, 0), 1));
+	text->setPosition(osg::Vec3(50.0f, 50.0f, 0.0f));
+	text->setText("Le texte de mon HUD");
+	text->setCharacterSize(20);
+	//text->setFont("arial.ttf");
+
+	osg::Geode* geode = new osg::Geode();
+	geode->getOrCreateStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+	geode->addDrawable(text);
+
+	camera->addChild(geode);
+	return camera;
+}
 
 class CallbackDeplacement : public osg::NodeCallback
  {
@@ -178,6 +208,7 @@ int main(void)
 	manip->setTrackerMode(osgGA::NodeTrackerManipulator::NODE_CENTER);
 	viewer.setCameraManipulator(manip.get());
 	
+	scene->addChild(creationHUD().get());
 	scene->addChild(coneTransform);
 	scene->addChild(sphereTransform);
 	scene->addChild(boiteTransform);

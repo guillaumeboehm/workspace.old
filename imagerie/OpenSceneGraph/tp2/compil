@@ -1,1 +1,1 @@
-g++ -o main main.cpp -losg -losgDB -losgGA -losgViewer -losgText -losgUtil
+g++ -o main main.cpp -losg -losgShadow -losgDB -losgParticle -losgGA -losgViewer -losgText -losgUtil
