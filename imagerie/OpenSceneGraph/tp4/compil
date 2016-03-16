@@ -1,0 +1,1 @@
+g++ -o main main.cpp fonctions.cpp -losg -losgShadow -losgDB -losgParticle -losgGA -losgViewer -losgText -losgUtil

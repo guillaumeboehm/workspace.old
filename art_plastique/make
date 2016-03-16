@@ -1,1 +1,3 @@
-g++ -Wall -o main main.cpp Image.cpp
+make programs
+cd bin
+./main

@@ -1,0 +1,4 @@
+make programs
+cd bin
+./main
+intimity
