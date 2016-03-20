@@ -35,6 +35,8 @@ List* controlPointList;// la structure pour les points de contrôle (sans classe
 
 List* courbes;
 
+int selectedPoint = 0;
+
 GLuint leVBO;//pour afficher les points de contrôle
 GLuint VBOCourbes;//pour afficher les points de contrôle
 
@@ -109,10 +111,9 @@ static void RenderScene()
 
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glBindBuffer(GL_ARRAY_BUFFER, VBOCourbes);
-		glPointSize(2.0f);
 		glVertexPointer(3, GL_FLOAT, 0, 0); //description des données pointées
 
-	glDrawArrays(GL_POINTS, 0, courbes -> size()); //les éléments à utiliser pour le dessin
+	glDrawArrays(GL_LINE_STRIP, 0, courbes -> size()); //les éléments à utiliser pour le dessin
 
 	glutSwapBuffers();
 }
@@ -125,26 +126,6 @@ static GLvoid callback_Idle()
 
 }
 
-void InitializeCourbes(){
-	courbes = Bezier(controlPointList).getPoints(0.01);
-
-	float verticesCourbes[courbes -> size()*3]; //sommets à 3 coordonnées x,y,z par point
-
-	unsigned n = 0;
-
-	for (std::deque<point3>::iterator it = courbes -> begin(); it != courbes-> end(); ++it) {
-		verticesCourbes[n] = (*it).x;
-		verticesCourbes[n+1] = (*it).y;
-		verticesCourbes[n+2] = (*it).z;
-		n += 3;
-	}
-
- 	glGenBuffers(1, &VBOCourbes); //génération d'une référence de buffer object
-	glBindBuffer(GL_ARRAY_BUFFER, VBOCourbes); //liaison du buffer avec un type tableau de données
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*courbes -> size() * 3, verticesCourbes, GL_STATIC_DRAW); //création et initialisation du container de données (size() sommets -> 3*size() floats)
-
-}
-
 // fonction de call-back pour la gestion des evenements clavier
 static GLvoid callback_Keyboard(unsigned char key, int x, int y)
 {
@@ -152,30 +133,6 @@ static GLvoid callback_Keyboard(unsigned char key, int x, int y)
   case KEY_ESC:
 	cout << "callback_Keyboard - " << "sortie de la boucle de rendu" << endl;
 		glutLeaveMainLoop ( ); //retour au main()
-	break;
-
-    //DEPLACER VERS LA GAUCHE
-	case GLUT_KEY_LEFT:
-		controlPointList->at(0).x = controlPointList->at(0).x - 0.1f ;
-		InitializeCourbes();
-	break;
-
-	//DEPLACER VERS LE HAUT
-	case GLUT_KEY_UP:
-		controlPointList->at(0).y = controlPointList->at(0).y + 0.1f;
-		InitializeCourbes();
-	break;
-
-	//DEPLACER VERS LA DROITE
-	case GLUT_KEY_RIGHT:
-		controlPointList->at(0).x = controlPointList->at(0).x + 0.1f;
-		InitializeCourbes();
-	break;
-
-	//DEPLACER VERS LE BAS
-	case GLUT_KEY_DOWN:
-		controlPointList->at(0).y = controlPointList->at(0).y -0.1f;
-		InitializeCourbes();
 	break;
 
   default:
@@ -260,7 +217,25 @@ static void CreateVertexBuffer()
 	glBindBuffer(GL_ARRAY_BUFFER, leVBO); //liaison du buffer avec un type tableau de données
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*controlPointList -> size() * 3, vertices, GL_STATIC_DRAW); //création et initialisation du container de données (size() sommets -> 3*size() floats)
 
+	float verticesCourbes[courbes -> size()*3]; //sommets à 3 coordonnées x,y,z par point
 
+	n = 0;
+
+	for (std::deque<point3>::iterator it = courbes -> begin(); it != courbes-> end(); ++it) {
+		verticesCourbes[n] = (*it).x;
+		verticesCourbes[n+1] = (*it).y;
+		verticesCourbes[n+2] = (*it).z;
+		n += 3;
+	}
+
+ 	glGenBuffers(1, &VBOCourbes); //génération d'une référence de buffer object
+	glBindBuffer(GL_ARRAY_BUFFER, VBOCourbes); //liaison du buffer avec un type tableau de données
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*courbes -> size() * 3, verticesCourbes, GL_STATIC_DRAW); //création et initialisation du container de données (size() sommets -> 3*size() floats)
+
+}
+
+void InitializeCourbes(){
+	courbes = Bezier(controlPointList).getPoints(0.01);
 }
 
 void InitializeGeometry() {
