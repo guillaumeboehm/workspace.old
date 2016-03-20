@@ -21,6 +21,11 @@ point3 point3::operator+(const point3 &op) const {
 	return( point3( x + op.x, y + op.y, z + op.z) );
 }
 
+point3& point3::operator+=(const point3 &op) {
+	x += op.x; y += op.y; z += op.z;
+return *this;
+}
+
 point3& point3::operator*=(const double op) {
 	x *= op; y *= op; z *= op;
 return *this;

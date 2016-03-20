@@ -5,17 +5,20 @@ compilateur = g++
 preproc_options = -c -Wall
 link_options = -Wall
 libs = -lGLEW -lGL -lGLU -lglut
-main = TP4Bezier
+main = main
 
 all: $(main)
 	@echo "\ncompilation terminee"
 
-$(main): point3.o TP4Bezier.o
+$(main): point3.o TP4Bezier.o bezier.o
 	@echo "--- compilation de $@ ..."
 	$(compilateur) $(link_options) $^ $(libs) -o $@
 	@echo "--- compilation de $@ terminée"
 
 point3.o: point3.cpp point3.h
+	$(compilateur) $(preproc_options) $<
+
+bezier.o: bezier.cpp bezier.h
 	$(compilateur) $(preproc_options) $<
 
 TP4Bezier.o: TP4Bezier.cpp

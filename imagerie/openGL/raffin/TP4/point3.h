@@ -22,6 +22,7 @@ public:
 
 	point3& operator=(const point3 &);
 	point3 operator+(const point3 &)const;
+	point3& operator+=(const point3 &);
 	point3& operator*=(const double); //produit par un scalaire
 	point3 operator*(const double)const; //idem
 	point3& operator/=(const double); //division par un scalaire
