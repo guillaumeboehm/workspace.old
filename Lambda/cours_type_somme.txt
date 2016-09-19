@@ -1,0 +1,82 @@
+
+Il existe deux espèces de types de données définissables en OCaml:
+
+- Les types produits (n-uplets ou enregsitrements) 
+  qui correspondent à un produit cartésien d'ensembles.
+- Les types sommes 
+  qui correspondent à une union d'ensembles.
+
+Les types sommes
+================
+
+Un type somme regroupe dans un même type des types différents (par exemple des entiers et des chaînes de caractères). Les différents membres de la somme sont discriminés par des constructeurs qui permettent d'une part, comme leur nom l'indique, de construire les valeurs de ce type et d'autre part d'accéder aux composantes de ces valeurs grâce au filtrage de motif. Appliquer un constructeur à un argument, c'est indiquer que la valeur retournée appartient à ce nouveau type. On déclare un type somme en donnant le nom de ses constructeurs et le type de leur éventuel argument.
+
+Exemple :
+
+#type couleur = Coeur | Carreau | Pique | Trefle;;
+(Le symbole "|" se lit "ou")
+
+#Coeur;;
+- : couleur = Coeur
+
+
+Les noms Coeur, Carreau, Pique et Trefle sont les constructeurs du type couleur.
+
+Remarque: Le nom d'un constructeur de valeur d'un type somme commence par une majuscule. 
+
+Il s'agissait là d'un cas dégénéré où les constructeurs n'ont pas d'argument (constructeurs constants). On parle alors de type énuméré : un type somme dont on enumère effectivement les valeurs.
+
+Dans le cas général les constructeurs ont des arguments : à la définition du type somme on indique leur type après le mot-clef of.
+ 
+Par exemple, on implémente les cartes à jouer par la définition du type carte à cinq constructeurs As, Roi, Dame, Valet et Petite_carte:
+
+#type carte =
+    As of couleur
+  | Roi of couleur
+  | Dame of couleur
+  | Valet of couleur
+  | Petite_carte of int * couleur;;
+
+#As Coeur;;
+- : carte = As Coeur
+#Petite_carte (10,Trefle);;
+- : carte = Petite_carte (10,Trefle)
+ 
+Les constructeurs permettent de distinguer les cas par filtrage:
+
+let couleur_of_carte c = match c with
+    As c -> c
+  | Roi c -> c
+  | Valet c -> c
+  | Petite_carte (v,c) -> c
+;;
+
+
+Le type des lambda-termes :
+=========================
+
+#type terme = 
+    Cst of string
+  | Var of string
+  | Abs of string*terme
+  | App of terme*terme
+;;
+
+(le type terme est récursif)
+
+#Abs ("x",Var "x");;
+- : terme = Abs ("x",Var "x")
+
+#let est_abstraction t = match t with
+    Cst _ -> false
+  | Var _ -> false
+  | Abs (_,_) -> true
+  | App (_,_) -> false
+;;
+
+#let t = Abs ("x",Var "x");; 
+t : terme = Abs ("x",Var "x")
+
+#est_abstraction t;;
+- : bool = true
+
