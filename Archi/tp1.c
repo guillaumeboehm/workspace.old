@@ -54,11 +54,18 @@ float mantisseNormalisee(float f){
   return a-127.f;
 }
 
-void exposant(float f, int result[]) {
-	
+void exposant(float f, int result[8]) {
+	for(unsigned int i = 23; i<23; ++i){
+    result[i-23] = n_b((char*)&f, i);
+  }
 }
 
 int exposantSansExces(float f) {
+  int exposant_val[8];
+  exposant(f, exposant_val);
+  float exposant = 0.f;
+  float puissance _2 = 1.f;
+  /////////////////////////////////////////////
   return 0;
 }
 
