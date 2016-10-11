@@ -21,4 +21,4 @@ main : $(OBJS)
 clean :
 	rm *.o main
 
-#archive :
+archive :
