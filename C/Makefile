@@ -15,5 +15,10 @@ COMPILER_FLAGS = -std=c99
 OBJ_NAME = td1
 
 #This is the target that compiles the executable
-all : $(OBJS)
+main : $(OBJS)
 		$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+
+clean :
+	rm *.o main
+
+#archive :
