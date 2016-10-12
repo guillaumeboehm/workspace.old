@@ -1,3 +1,8 @@
+/** 
+ * \file grille.h 
+ * header pour les grilles
+ */
+
 #ifndef __GRILLE_H
 #define __GRILLE_H
 
@@ -6,6 +11,12 @@
 #include <assert.h>
 
 // structure grille : nombre de lignes, nombre de colonnes, tableau de tableau de cellules
+/**
+ * \struct grille
+ * Déclaration de la structure d'une grille
+ * \typedef typedef struct grille;
+ * type synonyme de \c struct \c str_cercle
+ */
 typedef struct {int nbl; int nbc; int** cellules;} grille;
  
 // alloue une grille de taille l*c, et initialise toutes les cellules à mortes
@@ -17,11 +28,37 @@ void libere_grille (grille* g);
 // alloue et initalise la grille g à partir d'un fichier
 void init_grille_from_file (char * filename, grille* g);
 
-// rend vivante la cellule (i,j) de la grille g
+/** 
+ * \fn static inline void set_vivante(int i, int j, grille g);
+ * \relates grille
+ * \param i coordonnee x de la cellule
+ * \param j coordonnee y de la cellule
+ * \param g grille du jeu
+ * \brief rend vivante la cellule (i,j) de la grille g
+ *
+ */
 static inline void set_vivante(int i, int j, grille g){g.cellules[i][j] = 1;}
-// rend morte la cellule (i,j) de la grille g
+
+/** 
+ * \fn static inline void set_morte(int i, int j, grille g);
+ * \relates grille
+ * \param i coordonnee x de la cellule
+ * \param j coordonnee y de la cellule
+ * \param g grille du jeu
+ * \brief rend morte la cellule (i,j) de la grille g
+ *
+ */
 static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
-// teste si la cellule (i,j) de la grille g est vivante
+
+/** 
+ * \fn static inline int est_vivante(int i, int j, grille g);
+ * \relates grille
+ * \param i coordonnee x de la cellule
+ * \param j coordonnee y de la cellule
+ * \param g grille du jeu
+ * \brief teste si la cellule (i,j) de la grille g est vivante
+ *
+ */
 static inline int est_vivante(int i, int j, grille g){return g.cellules[i][j] == 1;}
 
 // recopie gs dans gd (sans allocation)

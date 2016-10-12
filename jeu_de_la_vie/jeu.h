@@ -1,10 +1,22 @@
+/** 
+ * \file jeu.h 
+ * header pour le jeu
+ */
+
 #ifndef __JEU_H
 #define __JEU_H
 
 #include "grille.h"
 
-// modulo modifié pour traiter correctement les bords i=0 et j=0
-// dans le calcul des voisins avec bords cycliques
+/** 
+ * \fn static inline int modulo(int i, int m);
+ * \relates grille
+ * \param i entier a diviser
+ * \param m modulo
+ * \brief modulo modifié pour traiter correctement les bords i=0 et j=0
+ * dans le calcul des voisins avec bords cycliques
+ *
+ */
 static inline int modulo(int i, int m) {return (i+m)%m;}
 
 // compte le nombre de voisins vivants de la cellule (i,j)

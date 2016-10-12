@@ -1,5 +1,20 @@
+/** 
+ * \file jeu.c 
+ * code pour le jeu
+ */
+
 #include "jeu.h"
 
+/** 
+ * \fn int compte_voisins_vivants (int i, int j, grille g);
+ * \param i coordonnee x de la cellule
+ * \param j coordonnee y de la cellule
+ * \param g grille du jeu
+ * \brief compte le nombre de voisins vivants de la cellule (i,j)
+ * les bords sont cycliques.
+ *
+ * \return le nombre de voisins vivants
+ */
 int compte_voisins_vivants (int i, int j, grille g){
 	int v = 0, l=g.nbl, c = g.nbc;
 	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
@@ -14,6 +29,13 @@ int compte_voisins_vivants (int i, int j, grille g){
 	return v; 
 }
 
+/** 
+ * \fn int compte_voisins_vivants (int i, int j, grille g);
+ * \param g grille du jeu
+ * \param gc grille temporaire pour le jeu
+ * \brief fait évoluer la grille g d'un pas de temps
+ *
+ */
 void evolue (grille *g, grille *gc){
 	copie_grille (*g,*gc); // copie temporaire de la grille
 	int i,j,l=g->nbl, c = g->nbc,v;

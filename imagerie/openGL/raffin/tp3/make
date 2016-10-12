@@ -1,2 +1,0 @@
-g++ -Wall TP3.cpp -lGLEW -lGLU -lGL -lglut -o main
-./main

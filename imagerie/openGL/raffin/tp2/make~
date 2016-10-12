@@ -1,4 +1,0 @@
-g++ -Wall TP2.cpp objetGeometrique.cpp -lGLEW -lGLU -lGL -lglut -o TP2
-./TP2
-
-rm TP2
