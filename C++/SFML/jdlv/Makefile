@@ -1,15 +1,15 @@
 #OBJS specifies wich files to compile as part of the project
-OBJS = main.c grille.c io.c jeu.c
+OBJS = main.cpp
 
 #CC specifies which compiler to use
-CC = gcc
+CC = g++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w supresses all warnings
-COMPILER_FLAGS = -std=c99
+COMPILER_FLAGS = -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
-#LINKER_FLAGS = 
+LINKER_FLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 #OBJ_NAME specifies the name of the executable
 OBJ_NAME = main
