@@ -1,0 +1,14 @@
+select count(*) as "Nb de clients" from client;
+
+select count(*) as "Nb prod <= 199€" from produit where prix <= 199;
+
+select max(prix) from produit;
+
+select min(extract(year from sysdate) - extract(year from naissance)) from client;
+
+select avg(extract(year from sysdate) - achat1) from client;
+
+select sum(qte) from ligne;
+
+select 
+
