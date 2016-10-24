@@ -10,21 +10,19 @@
 
 #define CELL_SIZE 5 //taille du carré de la cellule
 
-enum State {dead=0, alive}
+enum State {dead=0, alive=1};
 
 class Cell : public sf::RectangleShape{
 private:
 	State state;
 	int elapsed_time;
 
-
 public:
 	Cell();
 	inline ~Cell(){}
 	void increase();
 
-
-}
+};
 
 
 

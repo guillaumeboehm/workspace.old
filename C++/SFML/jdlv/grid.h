@@ -2,9 +2,9 @@
 #define GRID_H
 
 #include "cell.h"
-#include <deque>
+#include <memory>
 
-typedef std::unique_ptr<Cell> PCell;
+typedef std::auto_ptr<Cell> PCell;
 
 class Grid{
 private:
@@ -18,6 +18,6 @@ public:
 	void increase();
 	void display(sf::RenderWindow);
 
-}
+};
 
 #endif //GRID_H
