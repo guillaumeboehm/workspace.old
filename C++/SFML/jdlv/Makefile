@@ -1,5 +1,5 @@
 #OBJS specifies wich files to compile as part of the project
-OBJS = main.cpp
+OBJS = main.cpp grid.cpp cell.cpp
 
 #CC specifies which compiler to use
 CC = g++

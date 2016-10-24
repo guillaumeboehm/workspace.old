@@ -8,7 +8,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#define CELL_SIZE 4 //taille du carré de la cellule
+#define CELL_SIZE 5 //taille du carré de la cellule
 
 enum State {dead=0, alive}
 

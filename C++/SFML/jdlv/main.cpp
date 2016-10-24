@@ -1,6 +1,7 @@
 //file main.cpp
 
 #include <SFML/Graphics.hpp>
+#include "grid.h"
 
 int main()
 {
