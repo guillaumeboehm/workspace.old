@@ -15,7 +15,6 @@
  *
  */
 void alloue_grille (int l, int c, grille* g){
-	g = (grille*) malloc(3*sizeof(int)); //alloue la structure
 	g->nbl = l;
 	g->nbc = c;
 	g->cellules = malloc(l*sizeof(int*));

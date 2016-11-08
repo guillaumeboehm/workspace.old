@@ -78,7 +78,7 @@ void debut_jeu(grille *g, grille *gc){
 			{ // touche "entree" pour évoluer
 				evolue(g,gc);
 				efface_grille(*g);
-				printf("evolution :%d", compt++);
+				printf("evolution : %d", compt++);
 				affiche_grille(*g);
 				break;
 			}
