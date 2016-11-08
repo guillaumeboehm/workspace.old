@@ -1,1 +1,0 @@
-g++ -Wall TP1points.cpp cercle.cpp -lGL -lGLU -lglut -lGLEW -o TP1points

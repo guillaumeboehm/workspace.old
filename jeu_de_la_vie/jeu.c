@@ -6,7 +6,11 @@
 #include "jeu.h"
 
 /** 
+<<<<<<< HEAD
  * \fn int compte_voisins_vivants_c (int i, int j, grille g);
+=======
+ * \fn int compte_voisins_vivants (int i, int j, grille g);
+>>>>>>> 9c5408ddc5709b1f4a16f0e5b32424767f84dab6
  * \param i coordonnee x de la cellule
  * \param j coordonnee y de la cellule
  * \param g grille du jeu
@@ -15,7 +19,11 @@
  *
  * \return le nombre de voisins vivants
  */
+<<<<<<< HEAD
 int compte_voisins_vivants_c (int i, int j, grille g){
+=======
+int compte_voisins_vivants (int i, int j, grille g){
+>>>>>>> 9c5408ddc5709b1f4a16f0e5b32424767f84dab6
 	int v = 0, l=g.nbl, c = g.nbc;
 	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
 	v+= est_vivante(modulo(i-1,l),modulo(j,c),g);
@@ -30,6 +38,7 @@ int compte_voisins_vivants_c (int i, int j, grille g){
 }
 
 /** 
+<<<<<<< HEAD
  * \fn int compte_voisins_vivants_nc (int i, int j, grille g);
  * \param i coordonnee x de la cellule
  * \param j coordonnee y de la cellule
@@ -55,6 +64,8 @@ int compte_voisins_vivants_nc (int i, int j, grille g){
 }
 
 /** 
+=======
+>>>>>>> 9c5408ddc5709b1f4a16f0e5b32424767f84dab6
  * \fn int compte_voisins_vivants (int i, int j, grille g);
  * \param g grille du jeu
  * \param gc grille temporaire pour le jeu

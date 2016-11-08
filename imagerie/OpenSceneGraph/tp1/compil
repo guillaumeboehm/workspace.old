@@ -1,1 +1,0 @@
-g++ -o main main.cpp -losg -losgDB -losgGA -losgViewer -losgText -losgUtil
