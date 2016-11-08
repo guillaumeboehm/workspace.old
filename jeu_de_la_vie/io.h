@@ -1,3 +1,8 @@
+/** 
+ * \file io.h 
+ * header pour l'affichage
+ */
+
 #ifndef __IO_H
 #define __IO_H
 

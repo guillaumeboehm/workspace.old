@@ -15,6 +15,7 @@ int main (int argc, char ** argv) {
 	grille g, gc;
 	init_grille_from_file(argv[1],&g);
 	alloue_grille (g.nbl, g.nbc, &gc);
+	printf("evolution : 0");
 	affiche_grille(g);
 	
 	debut_jeu(&g, &gc);

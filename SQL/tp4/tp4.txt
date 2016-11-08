@@ -1,0 +1,80 @@
+I.
+
+1.
+CREATE TABLE Etudiant
+(
+	net int PRIMARY KEY NOT NULL,
+	nom varchar(100),
+	age int
+);
+
+2.
+INSERT INTO Etudiant (net, nom, age)
+VALUES
+	(1, 'Toto', 20);
+
+INSERT INTO Etudiant (age, nom, net)
+VALUES
+	(21, 'Tata', 2);
+
+INSERT INTO Etudiant (net, nom)
+VALUES
+	(3, 'Tutu');
+
+3.
+UPDATE Etudiant
+SET age = 18
+WHERE nom = 'Toto';
+
+DELETE FROM Etudiant WHERE nom = 'Tata';
+
+4.
+ALTER TABLE Etudiant
+ADD CONSTRAINT etudiant_ck_age CHECK (age > 17);
+
+5.
+ALTER TABLE Etudiant
+ADD addresse varchar(100);
+
+INSERT INTO Etudiant VALUES (20, 'Titi', 4, 'addresse');
+
+II.
+
+1.
+CREATE TABLE Cout
+(
+	age int NOT NULL,
+	tarif int,
+	CONSTRAINT primary_key_age PRIMARY KEY (age),
+	CONSTRAINT tarif_ck CHECK (tarif = 1 OR tarif = 2 OR tarif = 3)
+)
+
+2.
+INSERT INTO Cout VALUES (2, 1);
+INSERT INTO Cout VALUES (3, 4);
+INSERT INTO Cout VALUES (2, 2);
+
+3.
+ALTER TABLE Etudiant ADD CONSTRAINT fk_etudiant_age FOREIGN KEY (age) REFERENCES Cout(age);
+
+III.
+
+1.
+CREATE TABLE Inscription
+(
+	net int NOT NULL,
+	diplome varchar(30),
+	CONSTRAINT pk_net_insc PRIMARY KEY (net),
+	CONSTRAINT fk_net_insc FOREIGN KEY (net) REFERENCES Etudiant(net)
+
+);
+INSERT INTO Inscription VALUES (1, 'test');
+DELETE FROM Etudiant WHERE net = 1;
+
+2.
+ALTER TABLE Inscription
+DROP CONSTRAINT fk_net_insc;
+
+ALTER TABLE Inscription
+ADD CONSTRAINT fk_net_insc_dl_casc FOREIGN KEY (net) REFERENCES Etudiant(net) ON DELETE CASCADE;
+
