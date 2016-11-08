@@ -41,14 +41,15 @@ int compte_voisins_vivants_c (int i, int j, grille g){
  */
 int compte_voisins_vivants_nc (int i, int j, grille g){
 	int v = 0, l=g.nbl, c = g.nbc;
-	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
-	v+= est_vivante(modulo(i-1,l),modulo(j,c),g);
-	v+= est_vivante(modulo(i-1,l),modulo(j+1,c),g);
-	v+= est_vivante(modulo(i,l),modulo(j-1,c),g);
-	v+= est_vivante(modulo(i,l),modulo(j+1,c),g);
-	v+= est_vivante(modulo(i+1,l),modulo(j-1,c),g);
-	v+= est_vivante(modulo(i+1,l),modulo(j,c),g);
-	v+= est_vivante(modulo(i+1,l),modulo(j+1,c),g);
+	
+	if(i>0 && j>0) 	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
+	if(i>0) 	v+= est_vivante(modulo(i-1,l),modulo(j,c),g);
+	if(i>0 && j<l) 	v+= est_vivante(modulo(i-1,l),modulo(j+1,c),g);
+	if(j>0) 	v+= est_vivante(modulo(i,l),modulo(j-1,c),g);
+	if(j>0) 	v+= est_vivante(modulo(i,l),modulo(j+1,c),g);
+	if(i<c && j>0) 	v+= est_vivante(modulo(i+1,l),modulo(j-1,c),g);
+	if(i<c) 	v+= est_vivante(modulo(i+1,l),modulo(j,c),g);
+	if(i<c && j<l) 	v+= est_vivante(modulo(i+1,l),modulo(j+1,c),g);
 
 	return v; 
 }
