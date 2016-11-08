@@ -8,6 +8,10 @@
 
 #include "grille.h"
 
+
+//type de comptage de voisins
+int (*compte_voisins_vivants) (int, int, grille);
+
 /** 
  * \fn static inline int modulo(int i, int m);
  * \relates grille

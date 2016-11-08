@@ -28,7 +28,7 @@ void affiche_trait (int c){
 void affiche_ligne (int c, int* ligne){
 	int i;
 	for (i=0; i<c; ++i) 
-		if (ligne[i] == 0 ) printf ("|   "); else printf ("| O ");
+		if (ligne[i] == 0 ) printf ("|   "); else printf ("| %d ", ligne[i]);
 	printf("|\n");
 	return;
 }
@@ -71,6 +71,11 @@ void efface_grille (grille g){
 void debut_jeu(grille *g, grille *gc){
 	char c = getchar();
 	int compt = 1;
+	
+	compte_voisins_vivants = compte_voisins_vivants_c;
+	unsigned int flag_c = 0; //0 : cyclique, 1 : ncyclique
+	set_vivante = set_vivante_v;
+	unsigned int flag_v = 0; //0 : vieilli, 1 : nvieilli
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
@@ -81,6 +86,18 @@ void debut_jeu(grille *g, grille *gc){
 				printf("evolution : %d", compt++);
 				affiche_grille(*g);
 				break;
+			}
+			case 'c' :
+			{
+				if(flag_c ==0) compte_voisins_vivants = compte_voisins_vivants_nc;
+					else compte_voisins_vivants = compte_voisins_vivants_c;
+				flag_c = modulo(++flag_c,2);
+			}
+			case 'v' :
+			{
+				if(flag_v ==0) set_vivante = set_vivante_nv;
+					else set_vivante = set_vivante_v;
+				flag_v = modulo(++flag_v,2);
 			}
 			default : 
 			{ // touche non traitée
