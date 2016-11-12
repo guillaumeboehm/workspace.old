@@ -46,6 +46,7 @@ void libere_grille (grille* g){
  *
  */
 void init_grille_from_file (char * filename, grille* g){
+	set_vivante = set_vivante_nv;
 	FILE * pfile = NULL;
 	pfile = fopen(filename, "r");
 	assert (pfile != NULL);

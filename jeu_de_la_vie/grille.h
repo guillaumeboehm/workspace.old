@@ -37,9 +37,9 @@ void init_grille_from_file (char * filename, grille* g);
  * \brief rend vivante la cellule (i,j) de la grille g
  *
  */
-void (*set_vivante) (int, int, grille);
-static inline void set_vivante_v(int i, int j, grille g){g.cellules[i][j] += 1;}
+void (*set_vivante)(int, int, grille);
 static inline void set_vivante_nv(int i, int j, grille g){g.cellules[i][j] = 1;}
+static inline void set_vivante_v(int i, int j, grille g){g.cellules[i][j] += 1;}
 
 /** 
  * \fn static inline void set_morte(int i, int j, grille g);
