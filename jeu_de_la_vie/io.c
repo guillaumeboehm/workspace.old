@@ -92,12 +92,14 @@ void debut_jeu(grille *g, grille *gc){
 				if(flag_c ==0) compte_voisins_vivants = compte_voisins_vivants_nc;
 					else compte_voisins_vivants = compte_voisins_vivants_c;
 				flag_c = modulo(++flag_c,2);
+				break;
 			}
 			case 'v' :
 			{
 				if(flag_v ==0) set_vivante = set_vivante_nv;
 					else set_vivante = set_vivante_v;
 				flag_v = modulo(++flag_v,2);
+				break;
 			}
 			default : 
 			{ // touche non traitée

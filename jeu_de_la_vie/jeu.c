@@ -71,12 +71,12 @@ void evolue (grille *g, grille *gc){
 			v = compte_voisins_vivants (i, j, *gc);
 			if (est_vivante(i,j,*g)) 
 			{ // evolution d'une cellule vivante
-				if(v==2 || v==3) set_vivante(i,j,*g);
+				if(v==2 || v==3) set_vivante (i,j,*g);
 				else if ( v!=2 && v!= 3 ) set_morte(i,j,*g);
 			}
 			else 
 			{ // evolution d'une cellule morte
-				if ( v==3 ) set_vivante(i,j,*g);
+				if ( v==3 ) set_vivante (i,j,*g);
 			}
 		}
 	}
