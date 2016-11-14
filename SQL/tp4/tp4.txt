@@ -1,80 +1,50 @@
 I.
 
 1.
-CREATE TABLE Etudiant
-(
-	net int PRIMARY KEY NOT NULL,
-	nom varchar(100),
-	age int
-);
+CREATE OR REPLACE VIEW circuit_pas_cher AS
+SELECT NC, PRIX
+FROM L2I_CIRCUIT
+WHERE PRIX < 200;
 
 2.
-INSERT INTO Etudiant (net, nom, age)
-VALUES
-	(1, 'Toto', 20);
-
-INSERT INTO Etudiant (age, nom, net)
-VALUES
-	(21, 'Tata', 2);
-
-INSERT INTO Etudiant (net, nom)
-VALUES
-	(3, 'Tutu');
+CREATE TABLE mon_circuit as select * from L2I_CIRCUIT;
+CREATE OR REPLACE VIEW circuit_pas_cher AS
+SELECT NC, PRIX
+FROM mon_circuit
+WHERE PRIX < 200;
 
 3.
-UPDATE Etudiant
-SET age = 18
-WHERE nom = 'Toto';
-
-DELETE FROM Etudiant WHERE nom = 'Tata';
+CREATE TABLE mon_circuit as select * from L2I_CIRCUIT;
+CREATE OR REPLACE VIEW circuit_pas_cher AS
+SELECT NC, PRIX
+FROM mon_circuit
+WHERE PRIX < 200
+WITH CHECK OPTION;
 
 4.
-ALTER TABLE Etudiant
-ADD CONSTRAINT etudiant_ck_age CHECK (age > 17);
+CREATE TABLE circuit_anglais_table AS SELECT * FROM L2I_CIRCUIT;
 
-5.
-ALTER TABLE Etudiant
-ADD addresse varchar(100);
-
-INSERT INTO Etudiant VALUES (20, 'Titi', 4, 'addresse');
+CREATE OR REPLACE VIEW circuit_anglais AS
+SELECT DISTINCT NC
+FROM circuit_anglais_table
+WHERE NC IN (SELECT NOMV FROM L2I_VILLE
+		WHERE UPPER(PAYS) = 'ANGLETERRE'));
 
 II.
 
 1.
-CREATE TABLE Cout
-(
-	age int NOT NULL,
-	tarif int,
-	CONSTRAINT primary_key_age PRIMARY KEY (age),
-	CONSTRAINT tarif_ck CHECK (tarif = 1 OR tarif = 2 OR tarif = 3)
-)
+GRANT SELECT ON mon_circuit TO flint;
+GRANT SELECT ON circuit_pas_cher TO flint;
 
 2.
-INSERT INTO Cout VALUES (2, 1);
-INSERT INTO Cout VALUES (3, 4);
-INSERT INTO Cout VALUES (2, 2);
+select distinct table_name FROM all_tab_privs where grantee = 'FLINT';
 
 3.
-ALTER TABLE Etudiant ADD CONSTRAINT fk_etudiant_age FOREIGN KEY (age) REFERENCES Cout(age);
+INSERT INTO circuit_pas_cher VALUES (11, 150);
+commit;
 
-III.
+4.
+GRANT INSERT ON mon_circuit TO nbichara;
 
-1.
-CREATE TABLE Inscription
-(
-	net int NOT NULL,
-	diplome varchar(30),
-	CONSTRAINT pk_net_insc PRIMARY KEY (net),
-	CONSTRAINT fk_net_insc FOREIGN KEY (net) REFERENCES Etudiant(net)
-
-);
-INSERT INTO Inscription VALUES (1, 'test');
-DELETE FROM Etudiant WHERE net = 1;
-
-2.
-ALTER TABLE Inscription
-DROP CONSTRAINT fk_net_insc;
-
-ALTER TABLE Inscription
-ADD CONSTRAINT fk_net_insc_dl_casc FOREIGN KEY (net) REFERENCES Etudiant(net) ON DELETE CASCADE;
-
+5.
+REVOKE SELECT ON circuit_pas_cher FROM nbichara;
