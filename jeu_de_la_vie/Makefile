@@ -20,3 +20,6 @@ all : $(OBJS)
 
 clean :
 	rm *.o main
+
+archive:
+	tar czvf BOEHM_Guillaume_Jeu_De_La_Vie.tar.gz *.c *.h Doxyfile Makefile

@@ -29,19 +29,6 @@ void libere_grille (grille* g);
 void init_grille_from_file (char * filename, grille* g);
 
 /** 
- * \fn static inline void set_vivante(int i, int j, grille g);
- * \relates grille
- * \param i coordonnee x de la cellule
- * \param j coordonnee y de la cellule
- * \param g grille du jeu
- * \brief rend vivante la cellule (i,j) de la grille g
- *
- */
-void (*set_vivante) (int, int, grille);
-static inline void set_vivante_v(int i, int j, grille g){g.cellules[i][j] += 1;}
-static inline void set_vivante_nv(int i, int j, grille g){g.cellules[i][j] = 1;}
-
-/** 
  * \fn static inline void set_morte(int i, int j, grille g);
  * \relates grille
  * \param i coordonnee x de la cellule
@@ -51,6 +38,19 @@ static inline void set_vivante_nv(int i, int j, grille g){g.cellules[i][j] = 1;}
  *
  */
 static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
+
+/** 
+ * \fn static inline void set_vivante(int i, int j, grille g);
+ * \relates grille
+ * \param i coordonnee x de la cellule
+ * \param j coordonnee y de la cellule
+ * \param g grille du jeu
+ * \brief rend vivante la cellule (i,j) de la grille g
+ *
+ */
+void (*set_vivante)(int, int, grille);
+static inline void set_vivante_nv(int i, int j, grille g){g.cellules[i][j] = 1;}
+static inline void set_vivante_v(int i, int j, grille g){g.cellules[i][j] += 1; if(g.cellules[i][j] >= 8) set_morte(i,j,g);}
 
 /** 
  * \fn static inline int est_vivante(int i, int j, grille g);
