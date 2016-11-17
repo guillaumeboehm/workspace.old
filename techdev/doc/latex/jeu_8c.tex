@@ -1,0 +1,74 @@
+\hypertarget{jeu_8c}{}\section{/home/yorokobii/\+Documents/workspace/techdev/src/jeu.c File Reference}
+\label{jeu_8c}\index{/home/yorokobii/\+Documents/workspace/techdev/src/jeu.\+c@{/home/yorokobii/\+Documents/workspace/techdev/src/jeu.\+c}}
+{\ttfamily \#include \char`\"{}../include/jeu.\+h\char`\"{}}\\*
+Include dependency graph for jeu.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{jeu_8c_acc8422b6280ed6ef09f609683310de92}{compte\+\_\+voisins\+\_\+vivants\+\_\+c} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em compte le nombre de voisins vivants de la cellule (i,j) les bords sont cycliques. \end{DoxyCompactList}\item 
+int \hyperlink{jeu_8c_a22938221cd19d43dde7cd8fa18e9b3fd}{compte\+\_\+voisins\+\_\+vivants\+\_\+nc} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em compte le nombre de voisins vivants de la cellule (i,j) les bords sont non-\/cycliques. \end{DoxyCompactList}\item 
+void {\bfseries evolue} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc)\hypertarget{jeu_8c_ada8f751a97ad1847db23c5ba17be7802}{}\label{jeu_8c_ada8f751a97ad1847db23c5ba17be7802}
+
+\item 
+void {\bfseries est\+\_\+oscillante} (\hyperlink{structgrille}{grille} $\ast$gsource)\hypertarget{jeu_8c_a81d49c6f54015499b13dbf9ec5a68314}{}\label{jeu_8c_a81d49c6f54015499b13dbf9ec5a68314}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+code pour le jeu 
+
+\subsection{Function Documentation}
+\index{jeu.\+c@{jeu.\+c}!compte\+\_\+voisins\+\_\+vivants\+\_\+c@{compte\+\_\+voisins\+\_\+vivants\+\_\+c}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+c@{compte\+\_\+voisins\+\_\+vivants\+\_\+c}!jeu.\+c@{jeu.\+c}}
+\subsubsection[{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+c(int i, int j, grille g)}{compte_voisins_vivants_c(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}int compte\+\_\+voisins\+\_\+vivants\+\_\+c (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)}\hypertarget{jeu_8c_acc8422b6280ed6ef09f609683310de92}{}\label{jeu_8c_acc8422b6280ed6ef09f609683310de92}
+
+
+compte le nombre de voisins vivants de la cellule (i,j) les bords sont cycliques. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le nombre de voisins vivants 
+\end{DoxyReturn}
+\index{jeu.\+c@{jeu.\+c}!compte\+\_\+voisins\+\_\+vivants\+\_\+nc@{compte\+\_\+voisins\+\_\+vivants\+\_\+nc}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+nc@{compte\+\_\+voisins\+\_\+vivants\+\_\+nc}!jeu.\+c@{jeu.\+c}}
+\subsubsection[{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+nc(int i, int j, grille g)}{compte_voisins_vivants_nc(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}int compte\+\_\+voisins\+\_\+vivants\+\_\+nc (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)}\hypertarget{jeu_8c_a22938221cd19d43dde7cd8fa18e9b3fd}{}\label{jeu_8c_a22938221cd19d43dde7cd8fa18e9b3fd}
+
+
+compte le nombre de voisins vivants de la cellule (i,j) les bords sont non-\/cycliques. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le nombre de voisins vivants 
+\end{DoxyReturn}

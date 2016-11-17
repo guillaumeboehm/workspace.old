@@ -1,0 +1,110 @@
+\hypertarget{io_8c}{}\section{/home/yorokobii/\+Documents/workspace/techdev/src/io.c File Reference}
+\label{io_8c}\index{/home/yorokobii/\+Documents/workspace/techdev/src/io.\+c@{/home/yorokobii/\+Documents/workspace/techdev/src/io.\+c}}
+{\ttfamily \#include \char`\"{}../include/io.\+h\char`\"{}}\\*
+Include dependency graph for io.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{io_8c_a634cf584c380ce221d5d4199f3e813bd}{affiche\+\_\+trait} (int c)
+\begin{DoxyCompactList}\small\item\em affichage d\textquotesingle{}un trait horizontal \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a3f3ff78e56fcf21a932ff73b70635554}{affiche\+\_\+ligne} (int c, int $\ast$ligne)
+\begin{DoxyCompactList}\small\item\em affichage d\textquotesingle{}une ligne de la grille \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a90cb8ec05374b46d9995705ed4954f34}{affiche\+\_\+grille} (\hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em affichage d\textquotesingle{}une grille \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_ab36a6f8957cd3e682119007836ce6ad5}{efface\+\_\+grille} (\hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em effacement d\textquotesingle{}une grille \end{DoxyCompactList}\item 
+void \hyperlink{io_8c_a88493b3c55828670e47150a95ed7db5b}{debut\+\_\+jeu} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc)
+\begin{DoxyCompactList}\small\item\em debute le jeu \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+code pour l\textquotesingle{}affichage 
+
+\subsection{Function Documentation}
+\index{io.\+c@{io.\+c}!affiche\+\_\+grille@{affiche\+\_\+grille}}
+\index{affiche\+\_\+grille@{affiche\+\_\+grille}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{affiche\+\_\+grille(grille g)}{affiche_grille(grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+grille (
+\begin{DoxyParamCaption}
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a90cb8ec05374b46d9995705ed4954f34}{}\label{io_8c_a90cb8ec05374b46d9995705ed4954f34}
+
+
+affichage d\textquotesingle{}une grille 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille a afficher \\
+\hline
+\end{DoxyParams}
+\index{io.\+c@{io.\+c}!affiche\+\_\+ligne@{affiche\+\_\+ligne}}
+\index{affiche\+\_\+ligne@{affiche\+\_\+ligne}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{affiche\+\_\+ligne(int c, int $\ast$ligne)}{affiche_ligne(int c, int *ligne)}}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+ligne (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{int $\ast$}]{ligne}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a3f3ff78e56fcf21a932ff73b70635554}{}\label{io_8c_a3f3ff78e56fcf21a932ff73b70635554}
+
+
+affichage d\textquotesingle{}une ligne de la grille 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & longueur de la ligne \\
+\hline
+{\em ligne} & tableau de valeurs de la ligne \\
+\hline
+\end{DoxyParams}
+\index{io.\+c@{io.\+c}!affiche\+\_\+trait@{affiche\+\_\+trait}}
+\index{affiche\+\_\+trait@{affiche\+\_\+trait}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{affiche\+\_\+trait(int c)}{affiche_trait(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+trait (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a634cf584c380ce221d5d4199f3e813bd}{}\label{io_8c_a634cf584c380ce221d5d4199f3e813bd}
+
+
+affichage d\textquotesingle{}un trait horizontal 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & longueur du trait \\
+\hline
+\end{DoxyParams}
+\index{io.\+c@{io.\+c}!debut\+\_\+jeu@{debut\+\_\+jeu}}
+\index{debut\+\_\+jeu@{debut\+\_\+jeu}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{debut\+\_\+jeu(grille $\ast$g, grille $\ast$gc)}{debut_jeu(grille *g, grille *gc)}}]{\setlength{\rightskip}{0pt plus 5cm}void debut\+\_\+jeu (
+\begin{DoxyParamCaption}
+\item[{{\bf grille} $\ast$}]{g, }
+\item[{{\bf grille} $\ast$}]{gc}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_a88493b3c55828670e47150a95ed7db5b}{}\label{io_8c_a88493b3c55828670e47150a95ed7db5b}
+
+
+debute le jeu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille du jeu \\
+\hline
+{\em gc} & grille temporaire pour le jeu \\
+\hline
+\end{DoxyParams}
+\index{io.\+c@{io.\+c}!efface\+\_\+grille@{efface\+\_\+grille}}
+\index{efface\+\_\+grille@{efface\+\_\+grille}!io.\+c@{io.\+c}}
+\subsubsection[{\texorpdfstring{efface\+\_\+grille(grille g)}{efface_grille(grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}void efface\+\_\+grille (
+\begin{DoxyParamCaption}
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)}\hypertarget{io_8c_ab36a6f8957cd3e682119007836ce6ad5}{}\label{io_8c_ab36a6f8957cd3e682119007836ce6ad5}
+
+
+effacement d\textquotesingle{}une grille 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille a effacer \\
+\hline
+\end{DoxyParams}

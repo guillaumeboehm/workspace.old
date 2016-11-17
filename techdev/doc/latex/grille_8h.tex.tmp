@@ -1,0 +1,35 @@
+\hypertarget{grille_8h}{}\section{/home/yorokobii/\+Documents/workspace/techdev/include/grille.h File Reference}
+\label{grille_8h}\index{/home/yorokobii/\+Documents/workspace/techdev/include/grille.\+h@{/home/yorokobii/\+Documents/workspace/techdev/include/grille.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+Include dependency graph for grille.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsgrille}{sgrille}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structsgrille}{sgrille} \hyperlink{grille_8h_a079a2e61da8d4c15492d8bb7605e3630}{grille}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ {\bfseries set\+\_\+vivante} )(int, int, \hyperlink{structgrille}{grille})\hypertarget{grille_8h_a7690c9d05d577729b000ac766f571e8d}{}\label{grille_8h_a7690c9d05d577729b000ac766f571e8d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+header pour les grilles 
+
+\subsection{Typedef Documentation}
+\index{grille.\+h@{grille.\+h}!grille@{grille}}
+\index{grille@{grille}!grille.\+h@{grille.\+h}}
+\subsubsection[{\texorpdfstring{grille}{grille}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf grille}}\hypertarget{grille_8h_a079a2e61da8d4c15492d8bb7605e3630}{}\label{grille_8h_a079a2e61da8d4c15492d8bb7605e3630}
+type synonyme de {\ttfamily struct} {\ttfamily str\+\_\+cercle} 

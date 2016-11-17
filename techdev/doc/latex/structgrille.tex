@@ -1,0 +1,247 @@
+\hypertarget{structgrille}{}\section{grille Struct Reference}
+\label{structgrille}\index{grille@{grille}}
+
+
+{\ttfamily \#include $<$grille.\+h$>$}
+
+\subsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+static inline int \hyperlink{structgrille_a942de0ddd5c29a0f3b27b3990dff54b3}{set\+\_\+non\+\_\+viable} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em teste si la cellule (i,j) de la grille g est non viable \end{DoxyCompactList}\item 
+static inline void \hyperlink{structgrille_a61fe8df15841f97dbabeb4793c11345f}{est\+\_\+non\+\_\+viable} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em rend non viable la cellule (i,j) de la grille g \end{DoxyCompactList}\item 
+static inline void \hyperlink{structgrille_ab5ab346bdf3a9d7e3a0bfeab40416d6e}{set\+\_\+morte} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em rend morte la cellule (i,j) de la grille g \end{DoxyCompactList}\item 
+static inline void \hyperlink{structgrille_a889ff6b0976dfb79007387ad30d9c790}{set\+\_\+vivante} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em rend vivante la cellule (i,j) de la grille g \end{DoxyCompactList}\item 
+static inline int \hyperlink{structgrille_a4a27d70711027eca191df5592f922001}{est\+\_\+vivante} (int i, int j, \hyperlink{structgrille}{grille} g)
+\begin{DoxyCompactList}\small\item\em teste si la cellule (i,j) de la grille g est vivante \end{DoxyCompactList}\item 
+static inline int \hyperlink{structgrille_a8cc2b5e88ad337fae1efad3f36d33f01}{modulo} (int i, int m)
+\begin{DoxyCompactList}\small\item\em modulo modifié pour traiter correctement les bords i=0 et j=0 dans le calcul des voisins avec bords cycliques \end{DoxyCompactList}\item 
+void \hyperlink{structgrille_ae621f51c60aa4fafaa0c9f6c9b5a4036}{alloue\+\_\+grille} (int l, int c, \hyperlink{structgrille}{grille} $\ast$g)
+\begin{DoxyCompactList}\small\item\em alloue la grille g, et met tous les indices à 0 \end{DoxyCompactList}\item 
+void \hyperlink{structgrille_a7074b2b15576e9d2b3cd15c3a1dc7012}{libere\+\_\+grille} (\hyperlink{structgrille}{grille} $\ast$g)
+\begin{DoxyCompactList}\small\item\em desalloue la grille g \end{DoxyCompactList}\item 
+void \hyperlink{structgrille_adf5501cc0bbad28f5ffc561d92197e4e}{init\+\_\+grille\+\_\+from\+\_\+file} (char $\ast$filename, \hyperlink{structgrille}{grille} $\ast$g)
+\begin{DoxyCompactList}\small\item\em initialise la grille g gace au fichier filename \end{DoxyCompactList}\item 
+void \hyperlink{structgrille_a63b3ae16c86b568f6aa8f9ce84128b1e}{copie\+\_\+grille} (\hyperlink{structgrille}{grille} gs, \hyperlink{structgrille}{grille} gd)
+\begin{DoxyCompactList}\small\item\em recopie gs dans gd (sans allocation) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Déclaration de la structure d\textquotesingle{}une grille 
+
+\subsection{Friends And Related Function Documentation}
+\index{grille@{grille}!alloue\+\_\+grille@{alloue\+\_\+grille}}
+\index{alloue\+\_\+grille@{alloue\+\_\+grille}!grille@{grille}}
+\subsubsection[{\texorpdfstring{alloue\+\_\+grille(int l, int c, grille $\ast$g)}{alloue_grille(int l, int c, grille *g)}}]{\setlength{\rightskip}{0pt plus 5cm}void alloue\+\_\+grille (
+\begin{DoxyParamCaption}
+\item[{int}]{l, }
+\item[{int}]{c, }
+\item[{{\bf grille} $\ast$}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_ae621f51c60aa4fafaa0c9f6c9b5a4036}{}\label{structgrille_ae621f51c60aa4fafaa0c9f6c9b5a4036}
+
+
+alloue la grille g, et met tous les indices à 0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & nombre de lignes de la grille \\
+\hline
+{\em c} & nombre de colonnes de la grille \\
+\hline
+{\em g} & grille a allouer \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!copie\+\_\+grille@{copie\+\_\+grille}}
+\index{copie\+\_\+grille@{copie\+\_\+grille}!grille@{grille}}
+\subsubsection[{\texorpdfstring{copie\+\_\+grille(grille gs, grille gd)}{copie_grille(grille gs, grille gd)}}]{\setlength{\rightskip}{0pt plus 5cm}void copie\+\_\+grille (
+\begin{DoxyParamCaption}
+\item[{{\bf grille}}]{gs, }
+\item[{{\bf grille}}]{gd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a63b3ae16c86b568f6aa8f9ce84128b1e}{}\label{structgrille_a63b3ae16c86b568f6aa8f9ce84128b1e}
+
+
+recopie gs dans gd (sans allocation) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gs} & grille source \\
+\hline
+{\em gd} & grille destination \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!est\+\_\+non\+\_\+viable@{est\+\_\+non\+\_\+viable}}
+\index{est\+\_\+non\+\_\+viable@{est\+\_\+non\+\_\+viable}!grille@{grille}}
+\subsubsection[{\texorpdfstring{est\+\_\+non\+\_\+viable(int i, int j, grille g)}{est_non_viable(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline void est\+\_\+non\+\_\+viable (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a61fe8df15841f97dbabeb4793c11345f}{}\label{structgrille_a61fe8df15841f97dbabeb4793c11345f}
+
+
+rend non viable la cellule (i,j) de la grille g 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!est\+\_\+vivante@{est\+\_\+vivante}}
+\index{est\+\_\+vivante@{est\+\_\+vivante}!grille@{grille}}
+\subsubsection[{\texorpdfstring{est\+\_\+vivante(int i, int j, grille g)}{est_vivante(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline int est\+\_\+vivante (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a4a27d70711027eca191df5592f922001}{}\label{structgrille_a4a27d70711027eca191df5592f922001}
+
+
+teste si la cellule (i,j) de la grille g est vivante 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!init\+\_\+grille\+\_\+from\+\_\+file@{init\+\_\+grille\+\_\+from\+\_\+file}}
+\index{init\+\_\+grille\+\_\+from\+\_\+file@{init\+\_\+grille\+\_\+from\+\_\+file}!grille@{grille}}
+\subsubsection[{\texorpdfstring{init\+\_\+grille\+\_\+from\+\_\+file(char $\ast$filename, grille $\ast$g)}{init_grille_from_file(char *filename, grille *g)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+grille\+\_\+from\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{{\bf grille} $\ast$}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_adf5501cc0bbad28f5ffc561d92197e4e}{}\label{structgrille_adf5501cc0bbad28f5ffc561d92197e4e}
+
+
+initialise la grille g gace au fichier filename 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & nom du fichier permettant d\textquotesingle{}initialliser la grille \\
+\hline
+{\em g} & grille a initialliser \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!libere\+\_\+grille@{libere\+\_\+grille}}
+\index{libere\+\_\+grille@{libere\+\_\+grille}!grille@{grille}}
+\subsubsection[{\texorpdfstring{libere\+\_\+grille(grille $\ast$g)}{libere_grille(grille *g)}}]{\setlength{\rightskip}{0pt plus 5cm}void libere\+\_\+grille (
+\begin{DoxyParamCaption}
+\item[{{\bf grille} $\ast$}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a7074b2b15576e9d2b3cd15c3a1dc7012}{}\label{structgrille_a7074b2b15576e9d2b3cd15c3a1dc7012}
+
+
+desalloue la grille g 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille a liberer \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!modulo@{modulo}}
+\index{modulo@{modulo}!grille@{grille}}
+\subsubsection[{\texorpdfstring{modulo(int i, int m)}{modulo(int i, int m)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline int modulo (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a8cc2b5e88ad337fae1efad3f36d33f01}{}\label{structgrille_a8cc2b5e88ad337fae1efad3f36d33f01}
+
+
+modulo modifié pour traiter correctement les bords i=0 et j=0 dans le calcul des voisins avec bords cycliques 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & entier a diviser \\
+\hline
+{\em m} & modulo \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!set\+\_\+morte@{set\+\_\+morte}}
+\index{set\+\_\+morte@{set\+\_\+morte}!grille@{grille}}
+\subsubsection[{\texorpdfstring{set\+\_\+morte(int i, int j, grille g)}{set_morte(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline void set\+\_\+morte (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_ab5ab346bdf3a9d7e3a0bfeab40416d6e}{}\label{structgrille_ab5ab346bdf3a9d7e3a0bfeab40416d6e}
+
+
+rend morte la cellule (i,j) de la grille g 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!set\+\_\+non\+\_\+viable@{set\+\_\+non\+\_\+viable}}
+\index{set\+\_\+non\+\_\+viable@{set\+\_\+non\+\_\+viable}!grille@{grille}}
+\subsubsection[{\texorpdfstring{set\+\_\+non\+\_\+viable(int i, int j, grille g)}{set_non_viable(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline int set\+\_\+non\+\_\+viable (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a942de0ddd5c29a0f3b27b3990dff54b3}{}\label{structgrille_a942de0ddd5c29a0f3b27b3990dff54b3}
+
+
+teste si la cellule (i,j) de la grille g est non viable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+\index{grille@{grille}!set\+\_\+vivante@{set\+\_\+vivante}}
+\index{set\+\_\+vivante@{set\+\_\+vivante}!grille@{grille}}
+\subsubsection[{\texorpdfstring{set\+\_\+vivante(int i, int j, grille g)}{set_vivante(int i, int j, grille g)}}]{\setlength{\rightskip}{0pt plus 5cm}static inline void set\+\_\+vivante (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{{\bf grille}}]{g}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [related]}}\hypertarget{structgrille_a889ff6b0976dfb79007387ad30d9c790}{}\label{structgrille_a889ff6b0976dfb79007387ad30d9c790}
+
+
+rend vivante la cellule (i,j) de la grille g 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & coordonnee x de la cellule \\
+\hline
+{\em j} & coordonnee y de la cellule \\
+\hline
+{\em g} & grille du jeu \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yorokobii/\+Documents/workspace/techdev/include/\hyperlink{grille_8h}{grille.\+h}\item 
+/home/yorokobii/\+Documents/workspace/techdev/include/\hyperlink{jeu_8h}{jeu.\+h}\item 
+/home/yorokobii/\+Documents/workspace/techdev/src/\hyperlink{grille_8c}{grille.\+c}\end{DoxyCompactItemize}
