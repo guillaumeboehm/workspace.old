@@ -101,6 +101,10 @@ void debut_jeu(grille *g, grille *gc){
 				flag_v = modulo(++flag_v,2);
 				break;
 			}
+			case 'o' :
+			{
+				est_oscillante(g,gc);
+			}
 			default : 
 			{ // touche non traitée
 				printf("\n\e[1A");

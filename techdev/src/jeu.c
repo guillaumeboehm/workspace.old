@@ -115,7 +115,8 @@ void est_oscillante(grille* gsource, grille* gc){
 
 		//ajout de l'etat de la grille au tableau
 		alloue_grille(l, c, &tab[step]);
-		copie_grille(*gsource, tab[step++]);
+		copie_grille(*gsource, tab[step]);
+		step++;
 	}
 	for(unsigned int i=0; i<step; ++i){
 		libere_grille(&tab[i]);
