@@ -76,19 +76,27 @@ void debut_jeu(grille *g, grille *gc){
 	unsigned int flag_c = 0; //0 : cyclique, 1 : ncyclique
 	set_vivante = set_vivante_v;
 	unsigned int flag_v = 0; //0 : vieilli, 1 : nvieilli
+	int flag_change = 0;
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
 			case '\n' : 
 			{ // touche "entree" pour évoluer
-				evolue(g,gc);
-				efface_grille(*g);
-				printf("evolution : %d", compt++);
-				affiche_grille(*g);
+				if(flag_change == 1){
+					flag_change = 0;
+				}
+				else{
+					evolue(g,gc);
+					efface_grille(*g);
+					printf("evolution : %d", compt++);
+					affiche_grille(*g);
+				}
 				break;
 			}
 			case 'c' :
 			{
+				flag_change = 1;
+				printf("\e[1A \b");
 				if(flag_c ==0) compte_voisins_vivants = compte_voisins_vivants_nc;
 					else compte_voisins_vivants = compte_voisins_vivants_c;
 				flag_c = modulo(++flag_c,2);
@@ -96,6 +104,8 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'v' :
 			{
+				flag_change = 1;
+				printf("\e[1A \b");
 				if(flag_v ==0) set_vivante = set_vivante_nv;
 					else set_vivante = set_vivante_v;
 				flag_v = modulo(++flag_v,2);
@@ -103,11 +113,14 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'o' :
 			{
+				flag_change = 1;
+				printf("\e[1A \b");
 				est_oscillante(g,gc);
 			}
 			default : 
 			{ // touche non traitée
-				printf("\n\e[1A");
+				flag_change = 1;
+				printf("\e[1A \b");
 				break;
 			}
 		}

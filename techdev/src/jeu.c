@@ -106,23 +106,25 @@ void est_oscillante(grille* gsource, grille* gc){
 
 	while (step<MAX_STEP && same==0)
 	{
+		//ajout de l'etat de la grille au tableau
+		alloue_grille(l, c, &tab[step]);
+		copie_grille(g, tab[step]);
+		step++;
+
 		evolue(&g,gc);
-		for(unsigned int i=step-1; i>=0; --i)
-			if(egal_grille(g, tab[i])){
+
+		for(int i=step-1; i>=0; --i){
+			if(same == 0 && egal_grille(g, tab[i])){
 				same = 1;
 				periode = step-i;
 			}
-
-		//ajout de l'etat de la grille au tableau
-		alloue_grille(l, c, &tab[step]);
-		copie_grille(*gsource, tab[step]);
-		step++;
+		}
 	}
 	for(unsigned int i=0; i<step; ++i){
 		libere_grille(&tab[i]);
 	}
 
-	if(same == 0)
+	if(same == 1)
 		printf("La grille oscille au bout de %d pas\n", periode);
 	else
 		printf("La grille n'est pas oscillatoire au bout de 100 pas\n");
