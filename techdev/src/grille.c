@@ -102,9 +102,12 @@ int egal_grille (grille gs, grille gd){
 	int alive = 0;
 	int same = 1;
 	int i, j;
+	int tempgd, tempgs;
 	for (i=0; i<gs.nbl; ++i)
 		for (j=0; j<gs.nbc; ++j){
-			same &= (gd.cellules[i][j] == gs.cellules[i][j]);
+			if(gd.cellules[i][j] > 0) tempgd=1; else tempgd=0;
+			if(gs.cellules[i][j] > 0) tempgs=1; else tempgs=0;
+			same &= (tempgd == tempgs);
 			alive += gd.cellules[i][j];
 		}
 	return same && (alive>0);	
